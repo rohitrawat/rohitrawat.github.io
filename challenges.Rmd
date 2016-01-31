@@ -38,8 +38,8 @@ All of this data is loaded into a `data.frame` called `gapminder`. Your boss wan
 \newpage
 
 __Solution__
-You will want to maybe create a subset `data.frame` with only the rows for Algeria.
-You would then want to cut out life expectancy column into a `vector`.
+You will want to maybe create a subset `data.frame` with only the rows for _Albania_
+You would then want to cut out the _life expectancy_ column into a `vector`.
 You would then compute the mean and store it in a `scalar`.
 
 <p style="margin-bottom: 10cm;" />
