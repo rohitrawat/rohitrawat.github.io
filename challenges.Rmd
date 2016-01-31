@@ -2,7 +2,7 @@
 title: "Challenges"
 author: "Rohit Rawat"
 date: "January 30, 2016"
-output: pdf_document
+output: html_document
 ---
 <div style="background-color: unset; border: 5px solid;">
 
@@ -107,6 +107,7 @@ fence('name', '---')
 <p style="margin-bottom: 10cm;" />
 \newpage
 
+__Solution__
 ```{r}
 # function to surround a piece of text with other text
 fence <- function(original, wrapper) {
