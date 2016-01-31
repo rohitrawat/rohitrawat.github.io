@@ -2,7 +2,7 @@
 title: "Lesson"
 author: "Rohit Rawat"
 date: "January 24, 2016"
-output: pdf_document
+output: html_document
 ---
 
 ```{r, echo=FALSE, message=FALSE}
@@ -16,21 +16,21 @@ We have covered basic R usage:
 
 - Reading data files
 - Creating and manipulating variables
-- Data type
-- Calling built-int functions
+- Data types
+- Calling built-in functions
 
 Now we will cover:
 
 - Writing R scripts
-    - Where to write scripts in RStudio
-    - Sourcing a script
 - Writing functions
     - Scope issues in functions, Missing arguments
 - Calling R scripts from the command line
 
-# Writing scripts
+# Writing R scripts
 
-Just like we learned to use shell commands like `grep`, `sort`, and `wc`, and then later learned how to write shell scripts. A script helps us deal with a bigger or more complicated task. It will consist of a logical sequence of steps needed to solve a problem. That could include
+You have a basic idea of what scripts are from the shell lesson.
+
+Just like we learned to use shell commands like `grep`, `sort`, and `wc`, and then later learned how to write shell scripts. A script helps us deal with a bigger or more complicated task. It will consist of a logical sequence of steps needed to solve a problem. This could include
 
 - reading in data
 - creating variables to store data
@@ -38,7 +38,10 @@ Just like we learned to use shell commands like `grep`, `sort`, and `wc`, and th
 - creating more variables to store intermediary and final results
 - outputting the results as numbers or plots
 
-### Challenge
+<div style="background-color: unset; border: 5px solid;">
+
+__Challenge 2.1__
+Goal : to identify the data manipulation actions needed to perform a task
 
 Look at this data:
 
@@ -52,12 +55,6 @@ kable(head(gapminder,50))
 |:-----------|----:|--------:|:---------|-------:|---------:|
 |Afghanistan | 1952|  8425333|Asia      |  28.801|  779.4453|
 |Afghanistan | 1957|  9240934|Asia      |  30.332|  820.8530|
-|Afghanistan | 1962| 10267083|Asia      |  31.997|  853.1007|
-|Afghanistan | 1967| 11537966|Asia      |  34.020|  836.1971|
-|Afghanistan | 1972| 13079460|Asia      |  36.088|  739.9811|
-|Afghanistan | 1977| 14880372|Asia      |  38.438|  786.1134|
-|Afghanistan | 1982| 12881816|Asia      |  39.854|  978.0114|
-|Afghanistan | 1987| 13867957|Asia      |  40.822|  852.3959|
 |Afghanistan | 1992| 16317921|Asia      |  41.674|  649.3414|
 |Afghanistan | 1997| 22227415|Asia      |  41.763|  635.3414|
 |Afghanistan | 2002| 25268405|Asia      |  42.129|  726.7341|
@@ -68,59 +65,44 @@ kable(head(gapminder,50))
 |Albania     | 1967|  1984060|Europe    |  66.220| 2760.1969|
 |Albania     | 1972|  2263554|Europe    |  67.690| 3313.4222|
 |Albania     | 1977|  2509048|Europe    |  68.930| 3533.0039|
-|Albania     | 1982|  2780097|Europe    |  70.420| 3630.8807|
-|Albania     | 1987|  3075321|Europe    |  72.000| 3738.9327|
-|Albania     | 1992|  3326498|Europe    |  71.581| 2497.4379|
-|Albania     | 1997|  3428038|Europe    |  72.950| 3193.0546|
-|Albania     | 2002|  3508512|Europe    |  75.651| 4604.2117|
-|Albania     | 2007|  3600523|Europe    |  76.423| 5937.0295|
-|Algeria     | 1952|  9279525|Africa    |  43.077| 2449.0082|
-|Algeria     | 1957| 10270856|Africa    |  45.685| 3013.9760|
-|Algeria     | 1962| 11000948|Africa    |  48.303| 2550.8169|
-|Algeria     | 1967| 12760499|Africa    |  51.407| 3246.9918|
-|Algeria     | 1972| 14760787|Africa    |  54.518| 4182.6638|
-|Algeria     | 1977| 17152804|Africa    |  58.014| 4910.4168|
-|Algeria     | 1982| 20033753|Africa    |  61.368| 5745.1602|
-|Algeria     | 1987| 23254956|Africa    |  65.799| 5681.3585|
-|Algeria     | 1992| 26298373|Africa    |  67.744| 5023.2166|
-|Algeria     | 1997| 29072015|Africa    |  69.152| 4797.2951|
-|Algeria     | 2002| 31287142|Africa    |  70.994| 5288.0404|
-|Algeria     | 2007| 33333216|Africa    |  72.301| 6223.3675|
+|Argentina   | 1952| 17876956|Americas  |  62.485| 5911.3151|
+|Argentina   | 1957| 19610538|Americas  |  64.399| 6856.8562|
 
+All of this data is loaded into a `data.frame` called `gapminder`. Your boss wants you to compute the average life expectancy over all the years of data available for _Albania_. __Think of what other variables you will need to create to store intermediary results and the final result. Also think about the type each variable will have to be (data.frame, vector, scalar, string?)__. There are many correct answers to this problem. (no code is needed).
 
-All of this data is loaded into a variable called `gapminder`. Your goal is compute the average life expectancy over all the years of data available for `Albania`. Think of what other variables you will need to create to store intermediary results and the final result. Also think about the type each variable will have to be (data.frame, vector, scalar, string?). There are many correct answers to this problem.
+</div>
 
-You will want to maybe create a subset data.frame with only the rows for Algeria.
-You would then want to cut out life expectancy column into a vector.
-You would then compute the mean and store it in a scalar.
+__Solution__
+You will want to maybe create a subset `data.frame` with only the rows for Algeria.
+You would then want to cut out life expectancy column into a `vector`.
+You would then compute the mean and store it in a `scalar`.
+
+## First script in RStudio
 
 Instead of writing individual statements on the command line, we are going to write our code directly into a script. Scripts are meant to be run in one fell swoop once they are complete. But for new programmers, we will be executing every statement as soon as we type it to look out for errors. In RStudio, we can run the statement under the cursor by pressing the `Ctrl-Enter` key combination.
 
 In the default layout, RStudio has a text editor in the upper left corner.
 
-We start by reading the data. We know the csv file is in the data folder. Recall relative paths from shell. The relative path would be `data\gapminder-FiveYearData.csv` on a Windows machine and 'data/gapminder-FiveYearData.csv' on a *nix machine. To work around this problem, we use the file.path() function which takes two or more path components and generates a valid path:
+We start by reading the data. We know the csv file is in the data folder. Recall relative paths from shell. The relative path would be `data/gapminderData.csv`.
+
+__Windows Users__: What happened to using `\`s in paths like `data\gapminderData.csv`? RStudio prefers Unix style `/` even on Windows. Use `/`. When pasting paths that already have `\`, you must either replace them with a `/` or `\\`. A single `\` does not work.
 
 ```{r}
 # This script computes the average GDP for Albania using the gapminder data
 
-# generate a platform independent file name for the data
-fileName <- file.path('data', 'gapminder-FiveYearData.csv')
+# location of the data
+fileName <- 'data/gapminderData.csv'
 ```
 
-For now, just know that functions are snippets of code that may take some input and do something, maybe returning a result.
-
-Does the . mean anything? Unlike other languages, in R, it may or or may not mean anything. In this case, the `file.` prefix is used to group some of the file related functions together.
-
-```{r, echo=FALSE}
-print(fileName)
-```
-
-We now use the read.csv function to read in the data file
+We now use the `read.csv` function to read in the data file
 
 ```{r}
 # read the data file
 gapminder <- read.csv(fileName)
 ```
+
+_Note_:
+Does the . mean anything? Unlike other languages, in R, it may or or may not mean anything. In this case, the `read.` prefix is used to group some of the file I/O related functions together.
 
 Let's take a look at the data.
 
@@ -154,7 +136,7 @@ albaniaAverageGdp <- mean(gapminder[gapminder$country == 'Albania', 'gdpPercap']
 
 ```{r}
 # print a message with the result of our computation
-paste('The average GDP of Albania is', albaniaAverageGdp)
+print(paste('The average GDP of Albania is', albaniaAverageGdp))
 ```
 
 Instead of typing them one by one, we wrote all our commands into a single script. 
@@ -162,22 +144,23 @@ Instead of typing them one by one, we wrote all our commands into a single scrip
 The advantages are:
 
 - we have a well commented record of our code
-- we can change a value in the beginning of the script and run it again to get the new results
+- we can change a value in the beginning of the script and run it again to get the new results (like change 'Albania' to something else, or use a different `fileName`)
 
 Advantages of using the RStudio editor
 
 - Syntax highlighting
 - Automatic code indentation and bracket pairing
 - Variable name completion with [tab] (like bash)
+- Easier debugging
 
 Our completed script looks like this:
 
-script.R
+myScript.R
 ```{r}
-# This script computes the average GDP for Albania using the gapminder data
+# This script computes the average GDP per capita for Albania using the gapminder data
 
-# generate a platform independent file name for the data
-fileName <- file.path('data', 'gapminder-FiveYearData.csv')
+# location of the data
+fileName <- 'data/gapminderData.csv'
 
 # read the data file
 gapminder <- read.csv(fileName)
@@ -188,16 +171,14 @@ albaniaData <- gapminder[gapminder$country == 'Albania',]
 # select the column containing the GDP per capita from the Albania data
 albaniaGdp <- albaniaData$gdpPercap
 
-# compute the average GDP value
+# compute the average GDP per capita value
 albaniaAverageGdp <- mean(albaniaGdp)
 
 # print a message with the result of our computation
-paste('The average GDP of Albania is', albaniaAverageGdp)
+print(paste('The average GDP per capita of Albania is', albaniaAverageGdp))
 ```
 
 Now that the script is complete, we can run it as a complete unit. Scripts are executed using the `source()` function
-
-script.R:
 
 `source(filename)`
 
@@ -210,7 +191,12 @@ source('script.R')
 
 You can also press the `Source` button, which launches your script irrespective of the working directory. Although this may lead to problems if you are sourcing other scripts or loading files using a relative path. You can use the menu option Session -> Set Working Directory -> To source file location to set the current working directory to where your R code is.
 
-## Challenge
+__Question__: Why do we need print() around paste() when sourcing, but not when we ran paste() on the console?
+
+<div style="background-color: unset; border: 5px solid;">
+
+__Challenge 2.2__
+Goal : write a basic script
 
 Write and run your own script that will
 
@@ -219,34 +205,11 @@ Write and run your own script that will
 - Calculate the sum and store it in a variable `z`
 - print `z`
 
-To start a new script, open the File menu -> New File -> R script. Save it as myAdder.R and run it.
+To start a new script, open the File menu -> New File -> R script. Save it as __`myAdder.R`__ and run it.
 
-# Challenge
-
-We will modify the average GDP script to calculate the maximum GDP value amongst the data for Albania.
-
-```
-# This script computes the maximum GDP for Albania using the gapminder data
-
-# read the data file
-gapminder <- read.csv(fileName)
-
-# select the rows where the country is Albania and store it in albaniaData
-albaniaData <- gapminder[gapminder$country == 'Albania',]
-
-# select the column containing the GDP per capita from the Albania data
-albaniaGdp <- albaniaData$gdpPercap
-
-# compute the maximum GDP value
-
-
-# print a message with the result of our computation
-paste('The maximum GDP of Albania is',   )
-```
-
+</div>
 
 ------------------------------------------
-
 
 # Creating Functions
 
@@ -276,7 +239,7 @@ When we call the function, the values we pass to it are assigned to those variab
 
 ```{r}
 fahr_to_kelvin(32)
-paste('boiling point of water:', fahr_to_kelvin(212))
+print(paste('boiling point of water:', fahr_to_kelvin(212)))
 ```
 
 We've successfully called the function that we defined, and we have access to the value that we returned.
@@ -298,7 +261,7 @@ kelvin_to_celsius <- function(temp) {
 	Celsius
 }
 
-paste('absolute zero in Celsius:', kelvin_to_celsius(0))
+print(paste('absolute zero in Celsius:', kelvin_to_celsius(0)))
 ```
 
 What about converting Fahrenheit to Celsius? We could write out the formula, but we don't need to. Instead, we can compose the two functions we have already created:
@@ -310,30 +273,36 @@ fahr_to_celsius <- function(temp) {
     result
 }
 
-paste('freezing point of water in Celsius:', fahr_to_celsius(32.0))
+print(paste('freezing point of water in Celsius:', fahr_to_celsius(32.0)))
 ```
 
 This is our first taste of how larger programs are built: we define basic operations, then combine them in ever-large chunks to get the effect we want. 
 Real-life functions will usually be larger than the ones shown here—typically half a dozen to a few dozen lines—but they shouldn't ever be much longer than that, or the next person who reads it won't be able to understand what's going on. __Modular programming__
 
+<div style="background-color: unset; border: 5px solid;">
 
-### Challenges
+__Challenge 2.3__
+Goal : Wrapped function calls.
 
-As we've seen in our print statements, we can use `paste` to concatenate strings, `paste(a, b, sep = "")` is `ab`. __Note__: the `sep` can be an important value to define! What is the default? What can `sep` be?
+As we've seen in our print statements, we can use `paste` or `paste0` to concatenate strings.
 
 1. Write a function called `fence` that takes two parameters called `original` and `wrapper` and returns a new string that has the `wrapper` character at the beginning and end of the `original`:
 
 ```{r, echo=FALSE}
-fence  <-  function(original, wrapper) {
-    paste(wrapper, original, wrapper, sep="")
+# function to surround a piece of text with other text
+fence <- function(original, wrapper) {
+  result <- paste0(wrapper, original, wrapper)
+  
+  return(result)
 }
 ```
+Example function call and output:
 ```
-fence('name', '*')
-*name*
+fence('name', '---')
+---name---
 ```
+</div>
 
-__BREAK__
 
 ## Explaining the R Environments
 
@@ -341,8 +310,8 @@ Lets go back to the script we were writing before:
 ```{r}
 # This script computes the average GDP for Albania using the gapminder data
 
-# generate a platform independent file name for the data
-fileName <- file.path('data', 'gapminder-FiveYearData.csv')
+# location of the data
+fileName <- 'data/gapminderData.csv'
 
 # read the data file
 gapminder <- read.csv(fileName)
@@ -357,7 +326,7 @@ albaniaGdp <- albaniaData$gdpPercap
 albaniaAverageGdp <- mean(albaniaGdp)
 
 # print a message with the result of our computation
-paste('The average GDP of Albania is', albaniaAverageGdp)
+print(paste('The average GDP of Albania is', albaniaAverageGdp))
 ```
 
 And make a small change:
@@ -365,8 +334,8 @@ And make a small change:
 ```{r}
 # This script computes the average GDP for Albania using the gapminder data
 
-# generate a platform independent file name for the data
-fileName <- file.path('data', 'gapminder-FiveYearData.csv')
+# location of the data
+fileName <- 'data/gapminderData.csv'
 
 # read the data file
 gapminder <- read.csv(fileName)
@@ -384,7 +353,7 @@ albaniaGdp <- albaniaData$gdpPercap
 albaniaAverageGdp <- mean(albaniaGdp)
 
 # print a message with the result of our computation
-paste('The average GDP of', countryName, 'is', albaniaAverageGdp) # and the change here
+print(paste('The average GDP of', countryName, 'is', albaniaAverageGdp)) # and the change here
 ```
 
 Would using country instead of countryName cause any conflict with gapminder$country?
@@ -398,8 +367,8 @@ In a new script file, write a function `getAverageGdpPerCapita` that takes the n
 # clear old variables
 rm(list=ls())
 
-# generate a platform independent file name for the data
-fileName <- file.path('data', 'gapminder-FiveYearData.csv')
+# location of the data
+fileName <- 'data/gapminderData.csv'
 
 # read the data file
 gapminder <- read.csv(fileName)
@@ -436,7 +405,9 @@ gdpUSA <- getAverageGdpPerCapita('United States')
 gdpCanada <- getAverageGdpPerCapita('Canada')
 gdpMexico <- getAverageGdpPerCapita('Mexico')
 
-paste('GDP of USA is', gdpUSA);
+print(paste('GDP of USA is', gdpUSA))
+print(paste('GDP of Canada is', gdpCanada))
+print(paste('GDP of Mexico is', gdpMexico))
 ```
 
 When we create new variables, they are created in the current frame, which is initially the global frame:
@@ -466,8 +437,8 @@ getAverageGdpPerCapita <- function(country, startYear, endYear) {
 gdpUSA <- getAverageGdpPerCapita('United States', 1980, 1989)
 gdpCanada <- getAverageGdpPerCapita('Canada')
 
-paste('GDP of USA is', gdpUSA)
-paste('GDP of Canada is', gdpCanada)
+print(paste('GDP of USA is', gdpUSA))
+print(paste('GDP of Canada is', gdpCanada))
 ```
 
 Let's say that if start and end year are not specified, we want to default to a start year of 1952 and an end year of 2007.
@@ -485,8 +456,8 @@ getAverageGdpPerCapita <- function(country, startYear = 1952, endYear = 2007) {
 gdpUSA <- getAverageGdpPerCapita('United States', 1980, 1989)
 gdpCanada <- getAverageGdpPerCapita('Canada')
 
-paste('GDP of USA is', gdpUSA)
-paste('GDP of Canada is', gdpCanada)
+print(paste('GDP of USA is', gdpUSA))
+print(paste('GDP of Canada is', gdpCanada))
 ```
 Note the use of an = sign instead of the arrow `<-`.
 
@@ -582,11 +553,12 @@ These arguments can be accesed from within the R script by using the `commandArg
 
 Updated script.R
 ```
-countyList <- commandArgs(TRUE)
+countryList <- commandArgs(TRUE)
 
-dataDir <- 'data'
-dataFile <- 'gapminder-FiveYearData.csv'
-fileName <- file.path(dataDir, dataFile)
+# location of the data
+fileName <- 'data/gapminderData.csv'
+
+# read gapminder data
 gapminder <- read.csv(fileName)
 
 getAverageGdpPerCapita <- function(country) {
@@ -597,7 +569,7 @@ getAverageGdpPerCapita <- function(country) {
   mean(selectedCountryData)
 }
 
-averagedGdp <- sapply(countyList, getAverageGdpPerCapita)
+averagedGdp <- sapply(countryList, getAverageGdpPerCapita)
 barplot(averagedGdp)
 
 print(averagedGdp)
@@ -605,9 +577,14 @@ print(averagedGdp)
 
 We now write a shell script that is going to call this method on a list of countries
 
+Create a file makePlots.sh
 ```
 countries="Canada Belgium"
 Rscript cmdScript.R $countries
 ```
+Run it from bash:
+```
+bash makePlots.sh
+```
 
-The generated plots are saved in PDF format in the file Rplots.pdf.
+The generated plots are saved in PDF format in the file `Rplots.pdf`.
