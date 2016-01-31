@@ -7,7 +7,7 @@ output: html_document
 
 # Welcome to R Lesson - II
 
-- [Challenges](challenges.html)
+- [Challenges](challenges.html) [pdf](challenges.pdf)
 - [myScript.R](myScript.R)
 - [functions-lesson.R](functions-lesson.R)
 - [Full Lesson](lesson.html)
