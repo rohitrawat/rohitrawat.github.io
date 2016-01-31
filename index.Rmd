@@ -11,3 +11,5 @@ output: html_document
 - [myScript.R](myScript.R)
 - [functions-lesson.R](functions-lesson.R)
 - [Full Lesson](lesson.html)
+- [Dataset](data/gapminderData.csv)
+- [Gapminder Site](http://gapminder.org/)
