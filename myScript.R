@@ -24,17 +24,17 @@ avgGdp <- computeAvgGdp(countryName)
 print(paste("The average GDP per cap of", countryName, "is", avgGdp))
 
 # anonymous function
-countries <- c('United States', 'United Kingdom', 'Ethiopia')
+countries <- c('United States', 'United Kingdom', 'Ghana', 'Ethiopia')
 countriesAvgGdp50s <- sapply(countries, function(countryName) {
   computeAvgGdp(countryName, begin, end)
 })
 print(countriesAvgGdp50s)
-begin <- 1990
-end <- 2000
+begin <- 2000
+end <- 2010
 countriesAvgGdp90s <- sapply(countries, function(countryName) {
   computeAvgGdp(countryName, begin, end)
 })
 print(countriesAvgGdp90s)
 
-barplot(countriesAvgGdp50s)
-barplot(countriesAvgGdp90s)
+barplot(countriesAvgGdp50s, las=2, main='1950s')
+barplot(countriesAvgGdp90s, las=2, main='2000s')
