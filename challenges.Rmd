@@ -21,13 +21,8 @@ kable(head(gapminder,50))
 |:-----------|----:|--------:|:---------|-------:|---------:|
 |Afghanistan | 1952|  8425333|Asia      |  28.801|  779.4453|
 |Afghanistan | 1957|  9240934|Asia      |  30.332|  820.8530|
-|Afghanistan | 1992| 16317921|Asia      |  41.674|  649.3414|
-|Afghanistan | 1997| 22227415|Asia      |  41.763|  635.3414|
-|Afghanistan | 2002| 25268405|Asia      |  42.129|  726.7341|
 |Afghanistan | 2007| 31889923|Asia      |  43.828|  974.5803|
 |Albania     | 1952|  1282697|Europe    |  55.230| 1601.0561|
-|Albania     | 1957|  1476505|Europe    |  59.280| 1942.2842|
-|Albania     | 1962|  1728137|Europe    |  64.820| 2312.8890|
 |Albania     | 1967|  1984060|Europe    |  66.220| 2760.1969|
 |Albania     | 1972|  2263554|Europe    |  67.690| 3313.4222|
 |Albania     | 1977|  2509048|Europe    |  68.930| 3533.0039|
@@ -39,7 +34,15 @@ All of this data is loaded into a `data.frame` called `gapminder`. Your boss wan
 
 </div>
 
-<p style="margin-bottom: 5cm;" />
+<p style="margin-bottom: 10cm;" />
+\newpage
+
+__Solution__
+You will want to maybe create a subset `data.frame` with only the rows for Algeria.
+You would then want to cut out life expectancy column into a `vector`.
+You would then compute the mean and store it in a `scalar`.
+
+<p style="margin-bottom: 10cm;" />
 \newpage
 
 <div style="background-color: unset; border: 5px solid;">
@@ -59,7 +62,25 @@ To start a new script, open the File menu -> New File -> R script. Save it as __
 </div>
 
 
-<p style="margin-bottom: 5cm;" />
+<p style="margin-bottom: 10cm;" />
+\newpage
+
+__Solution__
+```{r}
+# a simple script to add two numbers
+
+# create two variables x and y
+x <- 25
+y <- 15
+
+# calculate the sum z
+z <- x + y
+
+# print the result
+print(paste('The sum of 25 and 15 is', z))
+```
+
+<p style="margin-bottom: 10cm;" />
 \newpage
 
 <div style="background-color: unset; border: 5px solid;">
@@ -83,6 +104,21 @@ fence('name', '---')
 ```
 </div>
 
-<p style="margin-bottom: 5cm;" />
+<p style="margin-bottom: 10cm;" />
+\newpage
+
+```{r}
+# function to surround a piece of text with other text
+fence <- function(original, wrapper) {
+  result <- paste0(wrapper, original, wrapper)
+  
+  return(result)
+}
+
+# test function call
+print(fence('Rohit', '***'))
+```
+
+<p style="margin-bottom: 10cm;" />
 \newpage
 

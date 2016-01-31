@@ -106,37 +106,13 @@ kable(head(gapminder,50))
 </tr>
 <tr class="odd">
 <td align="left">Afghanistan</td>
-<td align="right">1992</td>
-<td align="right">16317921</td>
-<td align="left">Asia</td>
-<td align="right">41.674</td>
-<td align="right">649.3414</td>
-</tr>
-<tr class="even">
-<td align="left">Afghanistan</td>
-<td align="right">1997</td>
-<td align="right">22227415</td>
-<td align="left">Asia</td>
-<td align="right">41.763</td>
-<td align="right">635.3414</td>
-</tr>
-<tr class="odd">
-<td align="left">Afghanistan</td>
-<td align="right">2002</td>
-<td align="right">25268405</td>
-<td align="left">Asia</td>
-<td align="right">42.129</td>
-<td align="right">726.7341</td>
-</tr>
-<tr class="even">
-<td align="left">Afghanistan</td>
 <td align="right">2007</td>
 <td align="right">31889923</td>
 <td align="left">Asia</td>
 <td align="right">43.828</td>
 <td align="right">974.5803</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Albania</td>
 <td align="right">1952</td>
 <td align="right">1282697</td>
@@ -144,23 +120,7 @@ kable(head(gapminder,50))
 <td align="right">55.230</td>
 <td align="right">1601.0561</td>
 </tr>
-<tr class="even">
-<td align="left">Albania</td>
-<td align="right">1957</td>
-<td align="right">1476505</td>
-<td align="left">Europe</td>
-<td align="right">59.280</td>
-<td align="right">1942.2842</td>
-</tr>
 <tr class="odd">
-<td align="left">Albania</td>
-<td align="right">1962</td>
-<td align="right">1728137</td>
-<td align="left">Europe</td>
-<td align="right">64.820</td>
-<td align="right">2312.8890</td>
-</tr>
-<tr class="even">
 <td align="left">Albania</td>
 <td align="right">1967</td>
 <td align="right">1984060</td>
@@ -168,7 +128,7 @@ kable(head(gapminder,50))
 <td align="right">66.220</td>
 <td align="right">2760.1969</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Albania</td>
 <td align="right">1972</td>
 <td align="right">2263554</td>
@@ -176,7 +136,7 @@ kable(head(gapminder,50))
 <td align="right">67.690</td>
 <td align="right">3313.4222</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Albania</td>
 <td align="right">1977</td>
 <td align="right">2509048</td>
@@ -184,7 +144,7 @@ kable(head(gapminder,50))
 <td align="right">68.930</td>
 <td align="right">3533.0039</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Argentina</td>
 <td align="right">1952</td>
 <td align="right">17876956</td>
@@ -192,7 +152,7 @@ kable(head(gapminder,50))
 <td align="right">62.485</td>
 <td align="right">5911.3151</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Argentina</td>
 <td align="right">1957</td>
 <td align="right">19610538</td>
@@ -204,7 +164,10 @@ kable(head(gapminder,50))
 </table>
 <p>All of this data is loaded into a <code>data.frame</code> called <code>gapminder</code>. Your boss wants you to compute the average life expectancy over all the years of data available for <em>Albania</em>. <strong>Think of what other variables you will need to create to store intermediary results and the final result. Also think about the type each variable will have to be (data.frame, vector, scalar, string?)</strong>. There are many correct answers to this problem. (no code is needed)</p>
 </div>
-<p style="margin-bottom: 5cm;"></p>
+<p style="margin-bottom: 10cm;"></p>
+<p></p>
+<p><strong>Solution</strong> You will want to maybe create a subset <code>data.frame</code> with only the rows for Algeria. You would then want to cut out life expectancy column into a <code>vector</code>. You would then compute the mean and store it in a <code>scalar</code>.</p>
+<p style="margin-bottom: 10cm;"></p>
 <p></p>
 <div style="background-color: unset; border: 5px solid;">
 <p><strong>Challenge 2.2</strong> Goal : write a basic script</p>
@@ -217,7 +180,22 @@ kable(head(gapminder,50))
 </ul>
 <p>To start a new script, open the File menu -&gt; New File -&gt; R script. Save it as <strong><code>myAdder.R</code></strong> and run it.</p>
 </div>
-<p style="margin-bottom: 5cm;"></p>
+<p style="margin-bottom: 10cm;"></p>
+<p></p>
+<p><strong>Solution</strong></p>
+<pre class="r"><code># a simple script to add two numbers
+
+# create two variables x and y
+x &lt;- 25
+y &lt;- 15
+
+# calculate the sum z
+z &lt;- x + y
+
+# print the result
+print(paste('The sum of 25 and 15 is', z))</code></pre>
+<pre><code>## [1] &quot;The sum of 25 and 15 is 40&quot;</code></pre>
+<p style="margin-bottom: 10cm;"></p>
 <p></p>
 <div style="background-color: unset; border: 5px solid;">
 <p><strong>Challenge 2.3</strong> Goal : Wrapped function calls.</p>
@@ -229,7 +207,19 @@ kable(head(gapminder,50))
 <pre><code>fence('name', '---')
 ---name---</code></pre>
 </div>
-<p style="margin-bottom: 5cm;"></p>
+<p style="margin-bottom: 10cm;"></p>
+<p></p>
+<pre class="r"><code># function to surround a piece of text with other text
+fence &lt;- function(original, wrapper) {
+  result &lt;- paste0(wrapper, original, wrapper)
+  
+  return(result)
+}
+
+# test function call
+print(fence('Rohit', '***'))</code></pre>
+<pre><code>## [1] &quot;***Rohit***&quot;</code></pre>
+<p style="margin-bottom: 10cm;"></p>
 <p></p>
 
 
