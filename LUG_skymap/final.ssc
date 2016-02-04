@@ -1,0 +1,8 @@
+core.setRealTime();
+core.setObserverLocation(-90, 20, 10, 0, "Your Location");
+StelMovementMgr.zoomTo(180, 0);
+core.wait(1);
+core.screenshot("skyshot");
+core.wait(1);
+core.quitStellarium();
+
