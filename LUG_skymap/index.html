@@ -42,7 +42,7 @@ Rohit Rawat
 <div id="about-the-app" class="slide section level2">
 <h1>About the App</h1>
 <p>This presentation is derived from this project I developed at HackRice 2016 <a href="http://devpost.com/software/spacecraft-spotter" class="uri">http://devpost.com/software/spacecraft-spotter</a>.<sup>1</sup></p>
-<p>Today we discuss a subset of this app which asks for a users location and displays an image of the sky with constellations from that place.</p>
+<p>Today we discuss a subset of this app which asks for a user’s location and displays an image of the sky with constellations from that place.</p>
 <p><sup>1</sup><strong>Important:</strong> This is the product of a hackathon from first timers, so the code and practices are not the best ones. Look at the other submissions too.</p>
 </div>
 <div id="stellarium" class="slide section level2">
@@ -156,7 +156,7 @@ Submit
 <h1>Add functionality to server</h1>
 <p>The form sends this query:</p>
 <p><code>localhost:8080/getImage?lat=20&amp;lon=-80</code></p>
-<p>We have to add handler for <code>getImage</code></p>
+<p>We have to add a handler for <code>getImage</code></p>
 <pre class="js"><code>app.get('/getImage', function(req, res){
     res.send('You sent lat = ' + req.query.lat + ' and lon = ' + req.query.lon);
 });</code></pre>

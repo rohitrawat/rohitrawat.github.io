@@ -13,7 +13,7 @@ footer: "Linux User Group at UTA"
 
 This presentation is derived from this project I developed at HackRice 2016 <http://devpost.com/software/spacecraft-spotter>.<sup>1</sup>
 
-Today we discuss a subset of this app which asks for a users location and displays an image of the sky with constellations from that place.
+Today we discuss a subset of this app which asks for a user's location and displays an image of the sky with constellations from that place.
 
 <sup>1</sup>__Important:__ This is the product of a hackathon from first timers, so the code and practices are not the best ones. Look at the other submissions too.
 
@@ -154,7 +154,7 @@ The form sends this query:
 
 `localhost:8080/getImage?lat=20&lon=-80`
 
-We have to add handler for `getImage`
+We have to add a handler for `getImage`
 
 ```{js}
 app.get('/getImage', function(req, res){
