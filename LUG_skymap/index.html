@@ -64,10 +64,12 @@ core.quitStellarium();</code></pre>
 <p>Run as:</p>
 <p><code>stellarium --screenshot-dir &quot;$PWD&quot; --startup-script &quot;$PWD/test.ssc&quot;</code></p>
 <p>Should produce <code>skyshot000.png</code></p>
+<p><em>Note:</em> The <code>core.quitStellarium();</code> does not work reliably across all versions of Stellarium.</p>
 </div>
 <div id="write-a-shell-script-to-set-location-1" class="slide section level2">
 <h1>Write a shell script to set location (1)</h1>
 <p>Create an input template:</p>
+<p><code>in.ssc</code>:</p>
 <pre><code>core.setRealTime();
 core.setObserverLocation(LON, LAT, 10, 0, &quot;Your Location&quot;);
 StelMovementMgr.zoomTo(180, 0);
@@ -80,16 +82,19 @@ core.quitStellarium();</code></pre>
 <div id="write-a-shell-script-to-set-location-2" class="slide section level2">
 <h1>Write a shell script to set location (2)</h1>
 <p>Inputs to our script: Latitude ($1), Longitude ($2)</p>
+<p><code>run.sh</code></p>
 <pre class="sh"><code>if [ $# -ne 2 ]
 then
     exit;
 fi
 rm skyshot000.png
 cat in.ssc | sed -e &quot;s/LAT/$1/&quot; | sed -e &quot;s/LON/$2/&quot; &gt; final.ssc
-cat final.ssc
 stellarium --screenshot-dir &quot;$PWD&quot; --startup-script &quot;$PWD/final.ssc&quot; &amp;
 sleep 4
 pkill stellarium</code></pre>
+<ul>
+<li>Because <code>core.quitStellarium();</code> doesn’t work, we manually kill the process after 4 seconds.</li>
+</ul>
 <p>Run as:</p>
 <p><code>sh run.sh 20 -90</code></p>
 </div>
@@ -106,7 +111,7 @@ pkill stellarium</code></pre>
 <p>Install <strong>express</strong> package:</p>
 <p><code>npm install express</code></p>
 <p>Web server in 4 lines:</p>
-<p>http.js:</p>
+<p><code>http.js</code>:</p>
 <pre class="js"><code>var express = require('express');
 var app = express();
 
@@ -115,7 +120,7 @@ app.listen(8080);</code></pre>
 </div>
 <div id="interface" class="slide section level2 smaller">
 <h1>Interface</h1>
-<p>index.html:</p>
+<p><code>index.html</code>:</p>
 <pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
 <span class="kw">&lt;head&gt;</span>
   <span class="kw">&lt;title&gt;</span>Welcome to Sky Imager<span class="kw">&lt;/title&gt;</span>

@@ -3,7 +3,7 @@ title: "Star Spotter"
 author: "Rohit Rawat"
 date: "February 3, 2016"
 output: slidy_presentation
-footer: "Linux User Group at UTA"
+footer: Linux User Group at UTA
 ---
 
 
@@ -44,10 +44,13 @@ Run as:
 
 Should produce `skyshot000.png`
 
+_Note:_ The `core.quitStellarium();` does not work reliably across all versions of Stellarium.
+
 ## Write a shell script to set location (1)
 
 Create an input template:
 
+`in.ssc`:
 ```
 core.setRealTime();
 core.setObserverLocation(LON, LAT, 10, 0, "Your Location");
@@ -63,6 +66,8 @@ LON and LAT will be replaced with user specified location.
 ## Write a shell script to set location (2)
 
 Inputs to our script: Latitude ($1), Longitude ($2)
+
+`run.sh`
 ```{sh}
 if [ $# -ne 2 ]
 then
@@ -70,11 +75,12 @@ then
 fi
 rm skyshot000.png
 cat in.ssc | sed -e "s/LAT/$1/" | sed -e "s/LON/$2/" > final.ssc
-cat final.ssc
 stellarium --screenshot-dir "$PWD" --startup-script "$PWD/final.ssc" &
 sleep 4
 pkill stellarium
 ```
+
+- Because `core.quitStellarium();` doesn't work, we manually kill the process after 4 seconds.
 
 Run as:
 
@@ -94,7 +100,7 @@ Install __express__ package:
 
 Web server in 4 lines:
 
-http.js:
+`http.js`:
 ```{js}
 var express = require('express');
 var app = express();
@@ -105,7 +111,7 @@ app.listen(8080);
 
 ## Interface {.smaller}
 
-index.html:
+`index.html`:
 ```{html}
 <html>
 <head>
