@@ -210,10 +210,10 @@ fileName &lt;- 'data/gapminderData.csv'</code></pre>
 gapminder &lt;- read.csv(fileName)</code></pre>
 <p><em>Note</em>: Does the . mean anything? Unlike other languages, in R, it may or or may not mean anything. In this case, the <code>read.</code> prefix is used to group some of the file I/O related functions together.</p>
 <p>Let’s take a look at the data.</p>
-<pre><code>View(gapminder)</code></pre>
+<pre class="r"><code>View(gapminder)</code></pre>
 <p><code>gapminder$country</code> yeilds the country column from the gapminder data.frame. The statement <code>gapminder$country == 'Albania'</code> produces a logical vector which is TRUE when the country name matches ‘Albania’</p>
 <p>On the console, show:</p>
-<pre><code>gapminder$country == 'Albania'</code></pre>
+<pre class="r"><code>gapminder$country == 'Albania'</code></pre>
 <pre class="r"><code># select the rows where the country is Albania and store it in albaniaData
 albaniaData &lt;- gapminder[gapminder$country == 'Albania',]
 
@@ -503,18 +503,18 @@ print(paste('GDP of USA is', gdpUSA))</code></pre>
 <pre><code>## [1] &quot;GDP of Canada is 22410.74634&quot;</code></pre>
 <p>Note the use of an = sign instead of the arrow <code>&lt;-</code>.</p>
 <p>Show the documentation of the read.csv function.</p>
-<pre><code>read.csv(file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;,
+<pre class="r"><code>read.csv(file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;,
          dec = &quot;.&quot;, fill = TRUE, comment.char = &quot;&quot;, ...)</code></pre>
 <p>That is why</p>
-<pre><code>file &lt;- 'myfile.cs'
+<pre class="r"><code>file &lt;- 'myfile.csv'
 read.csv(file)</code></pre>
 <p>works.</p>
 <p>What if we switch the start and end years?</p>
-<pre><code>gdpUSA &lt;- getAverageGdpPerCapita('United States', 1989, 1980)</code></pre>
+<pre class="r"><code>gdpUSA &lt;- getAverageGdpPerCapita('United States', 1989, 1980)</code></pre>
 <p>It won’t work, as R matches the arguments by position. But, we can specify arguments by name as</p>
-<pre><code>gdpUSA &lt;- getAverageGdpPerCapita('United States', endYear = 1989, startYear = 1980)</code></pre>
+<pre class="r"><code>gdpUSA &lt;- getAverageGdpPerCapita('United States', endYear = 1989, startYear = 1980)</code></pre>
 <p>We can even say</p>
-<pre><code>gdpUSA &lt;- getAverageGdpPerCapita('United States', endYear = 1989)</code></pre>
+<pre class="r"><code>gdpUSA &lt;- getAverageGdpPerCapita('United States', endYear = 1989)</code></pre>
 <p>in which case the start year will take on its default value.</p>
 </div>
 <div id="processing-large-vectors-using-the-apply-functions" class="section level2">
@@ -556,7 +556,7 @@ barplot(averagedGdpSouthAmericanCountries, las=2)</code></pre>
 <p>If Rscript is not on your system’s path, you can invoke Rscript using it’s full path name.</p>
 <p>Try it out:</p>
 <p>script.R:</p>
-<pre><code>print('This is a simple R script')</code></pre>
+<pre class="r"><code>print('This is a simple R script')</code></pre>
 <p>On the command line:</p>
 <pre><code>Rscript filename.R</code></pre>
 <p>Even if you do your data analysis in a different programming language, you can still use R’s plotting capabilities (which we will learn more about in the afternoon session). So if the majority of your work is in another programming language, you can still make use of R to do parts of the analysis, or only to make publication quality plots.</p>
@@ -564,7 +564,7 @@ barplot(averagedGdpSouthAmericanCountries, las=2)</code></pre>
 <pre><code>Rscript filename.R argument_1 argument_2 ...</code></pre>
 <p>These arguments can be accesed from within the R script by using the <code>commandArgs()</code> function. By default the list will include the name of the R executable, the script file name, and several switches. Using <code>commandArgs(FALSE)</code> only presents us with the arguments starting from <code>argument_1</code> onwards.</p>
 <p>Updated script.R</p>
-<pre><code>countryList &lt;- commandArgs(TRUE)
+<pre class="r"><code>countryList &lt;- commandArgs(TRUE)
 
 # location of the data
 fileName &lt;- 'data/gapminderData.csv'
@@ -585,7 +585,7 @@ barplot(averagedGdp)
 
 print(averagedGdp)</code></pre>
 <p>We now write a shell script that is going to call this method on a list of countries</p>
-<p>Create a file makePlots.sh</p>
+<p>Create a file <code>makePlots.sh</code></p>
 <pre><code>countries=&quot;Canada Belgium&quot;
 Rscript cmdScript.R $countries</code></pre>
 <p>Run it from bash:</p>

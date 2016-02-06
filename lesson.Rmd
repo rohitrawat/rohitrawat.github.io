@@ -2,6 +2,7 @@
 title: "Lesson"
 author: "Rohit Rawat"
 date: "January 24, 2016"
+last_updated: "January 24, 2016"
 output: html_document
 ---
 
@@ -101,14 +102,14 @@ Does the . mean anything? Unlike other languages, in R, it may or or may not mea
 
 Let's take a look at the data.
 
-```
+```{r, eval=FALSE}
 View(gapminder)
 ```
 
 `gapminder$country` yeilds the country column from the gapminder data.frame. The statement `gapminder$country == 'Albania'` produces a logical vector  which is TRUE when the country name matches 'Albania'
 
 On the console, show:
-```
+```{r, eval=FALSE}
 gapminder$country == 'Albania'
 ```
 
@@ -484,27 +485,27 @@ print(paste('GDP of Canada is', gdpCanada))
 Note the use of an = sign instead of the arrow `<-`.
 
 Show the documentation of the read.csv function.
-```
+```{r, eval=FALSE}
 read.csv(file, header = TRUE, sep = ",", quote = "\"",
          dec = ".", fill = TRUE, comment.char = "", ...)
 ```
 That is why
-```
-file <- 'myfile.cs'
+```{r, eval=FALSE}
+file <- 'myfile.csv'
 read.csv(file)
 ```
 works.
 
 What if we switch the start and end years?
-```
+```{r, eval=FALSE}
 gdpUSA <- getAverageGdpPerCapita('United States', 1989, 1980)
 ```
 It won't work, as R matches the arguments by position. But, we can specify arguments by name as
-```
+```{r, eval=FALSE}
 gdpUSA <- getAverageGdpPerCapita('United States', endYear = 1989, startYear = 1980)
 ```
 We can even say
-```
+```{r, eval=FALSE}
 gdpUSA <- getAverageGdpPerCapita('United States', endYear = 1989)
 ```
 in which case the start year will take on its default value.
@@ -554,7 +555,7 @@ If Rscript is not on your system's path, you can invoke Rscript using it's full 
 Try it out:
 
 script.R:
-```
+```{r, eval=FALSE}
 print('This is a simple R script')
 ```
 
@@ -574,7 +575,7 @@ Rscript filename.R argument_1 argument_2 ...
 These arguments can be accesed from within the R script by using the `commandArgs()` function. By default the list will include the name of the R executable, the script file name, and several switches. Using `commandArgs(FALSE)` only presents us with the arguments starting from `argument_1` onwards.
 
 Updated script.R
-```
+```{r, eval=FALSE}
 countryList <- commandArgs(TRUE)
 
 # location of the data
@@ -599,7 +600,7 @@ print(averagedGdp)
 
 We now write a shell script that is going to call this method on a list of countries
 
-Create a file makePlots.sh
+Create a file `makePlots.sh`
 ```
 countries="Canada Belgium"
 Rscript cmdScript.R $countries
